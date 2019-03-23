@@ -25,6 +25,7 @@ export class PatientComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    //get patient id from url params and update declared patient and form with proper data
     this.route.params.subscribe(params => {
       this.patientService.getPatient(params.id).subscribe(_patient => {
         this.patient = _patient;
@@ -44,8 +45,7 @@ export class PatientComponent implements OnInit {
     let birthdate = this.patientForm.controls['birthdate'].value;
   
     let patient = { id, firstName, lastName, birthdate };
-    console.log(patient)
-    this.patientService.updatePatient(this.patient.id, patient).subscribe(response => {
+    this.patientService.updatePatient(patient).subscribe(response => {
     })
   }
   

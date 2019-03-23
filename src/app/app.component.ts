@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'patients-app';
 
+  //TODO get user name, hard coded for now
   public user = 'Alex';
 
   constructor(
     private router: Router
   ) {
-  this.router.navigate(['patients']);
-  }
 
+    //redirect to main list page
+    this.router.navigate(['patients']);
+  }
 }
