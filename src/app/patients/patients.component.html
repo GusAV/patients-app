@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3 pr-0 pl-5">
+      <label for="patient">First name</label>
+    </div>
+    <div class="col-3 p-0">
+      <label for="patient">Last name</label>
+    </div>
+    <div class="col-3 pl-0">
+      <label for="patient">Birthdate</label>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <form [formGroup]="newPatientForm" (keyup.enter)="addPatient()">
+    <div class="row">
+      <div class="col-3 pr-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">#</div>
+          </div>
+          <input #focusedInput type="text" class="form-control" [class.is-invalid]="newPatientForm.get('firstName').touched && newPatientForm.get('firstName').invalid" formControlName="firstName" aria-describedby="firstName" placeholder="First name">
+        </div>
+      </div>
+      <div class="col-3 p-0">
+        <input type="text" class="form-control" [class.is-invalid]="newPatientForm.get('lastName').touched && newPatientForm.get('lastName').invalid" formControlName="lastName" aria-describedby="lastName" placeholder="Last name">
+      </div>
+      <div class="col-3 p-0">
+        <input type="date" class="form-control" [class.is-invalid]="newPatientForm.get('birthdate').touched && newPatientForm.get('birthdate').invalid" formControlName="birthdate" aria-describedby="birthdate" placeholder="Date of birth">
+      </div>
+      <div class="col-3 pl-0">
+        <button type="button" class="btn btn-info btn-block" (click)="addPatient()">Add patient</button>
+      </div>
+    </div>
+  </form>
+  <form class="row" *ngFor="let _patientForm of patientForms.controls; let i = index" [formGroup]="_patientForm">
+    <div class="col-3 pr-0">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><a routerLink="/patients/{{_patientForm.get('id').value}}" routerLinkActive="active">{{_patientForm.get('id').value}}</a></div>
+        </div>
+        <input type="text" formControlName="firstName" id="firstName" class="form-control" aria-describedby="firstName" placeholder="First name">
+      </div>
+    </div>
+    <div class="col-3 p-0">
+      <input type="text" formControlName="lastName" id="lastName" class="form-control" aria-describedby="lastName" placeholder="Last name">
+    </div>
+    <div class="col-3 p-0">
+      <input type="date" id="birthdate" formControlName="birthdate" value="{{_patientForm.get('birthdate').value | date: 'yyyy-MM-dd'}}" class="form-control" aria-describedby="birthdate" placeholder="Date of birth">
+    </div>
+    <div class="col-3 pl-0">
+      <div class="btn-group btn-block" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-dark" (click)="updatePatient(_patientForm.get('id').value, _patientForm.get('firstName').value, _patientForm.get('lastName').value, _patientForm.get('birthdate').value)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deletePatient(_patientForm.get('id').value)">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
+

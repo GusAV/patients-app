@@ -1,0 +1,38 @@
+<div *ngIf="patient" class="container">
+  <div class="row">
+    <div class="col-3 pr-0">
+      <label for="patient"><a routerLink="/patients" routerLinkActive="active" style="cursor: pointer;">Back</a> First name</label>
+    </div>
+    <div class="col-3 p-0">
+      <label for="patient">Last name</label>
+    </div>
+    <div class="col-3 pl-0">
+      <label for="patient">Birthdate</label>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <form [formGroup]="patientForm" (keyup.enter)="updatePatient()">
+    <div class="row">
+      <div class="col-3 pr-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">{{patient.id}}</div>
+          </div>
+          <input #focusedInput type="text" class="form-control" formControlName="firstName" aria-describedby="firstName" placeholder="First name">
+        </div>
+      </div>
+      <div class="col-3 p-0">
+        <input type="text" class="form-control" formControlName="lastName" aria-describedby="lastName" placeholder="Last name">
+      </div>
+      <div class="col-3 p-0">
+        <input type="date" id="birthdate" class="form-control" value="{{patient.birthdate | date: 'yyyy-MM-dd'}}" formControlName="birthdate" aria-describedby="birthdate" placeholder="Date of birth">
+      </div>
+      <div class="col-3 pl-0">
+        <button type="button" class="btn btn-dark" (click)="updatePatient()">Update</button>
+        <button type="button" class="btn btn-danger" (click)="deletePatient()">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
