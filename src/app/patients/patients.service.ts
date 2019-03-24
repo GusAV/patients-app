@@ -9,7 +9,7 @@ export class PatientsService {
   private header: HttpHeaders;
   
   //endpoint address
-  private apiEndpoint:string = 'http://localhost:5000/api/patients/';
+  private apiEndpoint:string = 'http://91.121.209.198:5000/api/patients/';
 
   constructor(private http: HttpClient) 
   { 

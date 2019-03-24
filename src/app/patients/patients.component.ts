@@ -91,6 +91,6 @@ export class PatientsComponent implements OnInit {
     })
   }
 
-  //TODO get response for each function to show user confirmation of action executed and improve user usability 
+  //TODO get response for each function and add loading to show user confirmation of action executed and improve user usability 
 }
 
